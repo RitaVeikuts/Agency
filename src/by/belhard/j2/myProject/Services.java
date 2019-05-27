@@ -1,7 +1,6 @@
 package by.belhard.j2.myProject;
 
 import by.belhard.j2.Exceptions.InvalidInputException;
-import by.belhard.j2.myProject.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,18 +16,19 @@ public class Services /*extends Commands*/ {
 
         StringBuilder sb = new StringBuilder();
         sb.append("Select an action:\n")
-                .append("1. Add Visa\n")
-                .append("2. Delete Visa\n")
-                .append("3. Change Visa\n")
-                .append("4. Show All Visas\n")
-                .append("5. Show clients' base\n")
-                .append("6. Change status of visa application\n")
-                .append("7. Calculate the company's revenue\n")
-                .append("0. Close program");
+                .append("1 Add Visa\n")
+                .append("2 Delete Visa\n")
+                .append("3 Change Visa\n")
+                .append("4 Show All Visas\n")
+                .append("5 Show clients' base\n")
+                .append("6 Change status of visa application\n")
+                .append("7 Calculate the company's revenue\n")
+                .append("0 Close program");
         System.out.println(sb);
     }
 
-    public void startWork() throws IOException, StringIndexOutOfBoundsException{
+
+    public BufferedReader startWork() throws IOException, StringIndexOutOfBoundsException{
 
         String visas ="";
         String clients = "";
@@ -39,7 +39,8 @@ public class Services /*extends Commands*/ {
             a = askForInput();
         } catch (InvalidInputException e) {
             System.err.println("There is no such command!");
-            a = '_';
+            return null;
+
         }
 
         switch (a) {
@@ -52,9 +53,10 @@ public class Services /*extends Commands*/ {
 
         }
 
+        return null;
     }
 
-    private char askForInput() throws IOException {
+    private char askForInput() throws IOException, StringIndexOutOfBoundsException {
         String s = reader.readLine();
         if (s.length() != 1 && !s.matches("[01234567]"))
             throw new InvalidInputException();

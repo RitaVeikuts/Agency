@@ -14,7 +14,7 @@ public class Main {
     private static final String URL =
             "jdbc:mysql://localhost:3306/Visas_agency?serverTimezone=UTC";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, StringIndexOutOfBoundsException {
 
         try {
             Class.forName(DRIVER_NAME);
@@ -37,11 +37,14 @@ public class Main {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
+
 
 
         Services services = new Services();
 
         services.startWork();
     }
-}
+ }
