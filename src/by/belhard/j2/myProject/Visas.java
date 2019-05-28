@@ -11,7 +11,7 @@ public class Visas {
     private int cost;
 
     @Contract(pure = true)
-    public Visas (int id, String country, int visa_fee, String visa_fee_currency, int cost) {
+    public Visas(int i, String vdoij, int i1, String usd, int i2) {
         this.id = id;
         this.country = country;
         this.visa_fee = visa_fee;

@@ -43,15 +43,35 @@ public class Services /*extends Commands*/ {
 
         }
 
+        while (a != '0'){
         switch (a) {
             case '1':
                 System.out.printf("Enter the following parameters: \n 1. Country.\n 2. Visa fee.\n " +
                         "3. Currency of visa fee.\n 4. The cost of visa services in the agency.\n");
                 break;
+            case '2':
+                System.out.printf("If you want to delete the visa, please enter the country.\n");
+                break;
+            case '3':
+
             case '4':
+                System.out.printf("Visa list:\n");
+                break;
+            case '5':
+                System.out.printf("Clients'base:\n");
+                break;
+            case '6':
+                System.out.printf("Enter the following parameters: \n 1. Client.\n 2. Visa.\n " +
+                        "3. Decision date.\n 4. New status.\n");
+                break;
+
+            case '7':
+                System.out.println("Total revenue of the company is: " );
+            case '0':
+                return startWork();
 
 
-        }
+        }}
 
         return null;
     }

@@ -24,6 +24,7 @@ public class Main {
         }
         Connection connection;
         List<Clients> clientsList = new ArrayList<>();
+        List<Visas> visasLIat = new ArrayList<>();
 
 
         try {
@@ -41,10 +42,12 @@ public class Main {
             e.printStackTrace();
         }
 
+        }
+
 
 
         Services services = new Services();
 
         services.startWork();
     }
- }
+

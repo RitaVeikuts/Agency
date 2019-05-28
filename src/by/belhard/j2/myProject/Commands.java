@@ -1,15 +1,12 @@
-package by.belhard.j2.myProject;
+/*package by.belhard.j2.myProject;
 
-/*import by.belhard.j2.Exceptions.InvalidInputException;
+import by.belhard.j2.Exceptions.InvalidInputException;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +20,11 @@ public class Commands {
             "jdbc:mysql://localhost:3306/company?serverTimezone=UTC";
 
     private final Map<String, Visas> visasMap = new HashMap<>();
-    private final BufferedReader reader;
+    private BufferedReader reader = null;
 
     public Commands() {
-
-        /*try {
+*/
+  /*      try {
             Class.forName(DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             System.err.println(DRIVER_NAME + " loading failure");
@@ -46,23 +43,25 @@ public class Commands {
 
             Statement statement = connection.createStatement();
 
-    } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        public static toAddVisas (query) ;{
+        public static void toAddVisa (); {
             (sb.append("Enter country:\n")).append(reader).append("Enter visa fee:\n").
                     append(reader).append("Enter the currency of visa fee:\n").
                     append(reader).append("Enter the cost of visa:\n");
-        }
-    }
-    private void deleteVisa (String country)
+            Statement query = new Statement() {
 
+                @Override
+                public ResultSet executeQuery(String sql) throws SQLException {
+                    Visas visa = new Visas(0, "vdoij", 142, "USD", 15);
+                    visasList.add(visa);
+                    System.out.println(visasList);
+                    return null;
+                }};}}}
 
-
-
-
-    private char askForInput() throws IOException {
+    /*private char askForInput(StringBuilder sb) throws IOException {
 
         String s = reader.readLine();
 
