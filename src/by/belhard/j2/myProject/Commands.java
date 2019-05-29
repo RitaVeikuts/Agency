@@ -1,8 +1,7 @@
-/*package by.belhard.j2.myProject;
 
-import by.belhard.j2.Exceptions.InvalidInputException;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
+package by.belhard.j2.myProject;
 
+import javax.swing.text.html.parser.Parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,18 +12,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Commands {
+
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     private static final String URL =
             "jdbc:mysql://localhost:3306/company?serverTimezone=UTC";
 
+
+    private Connection connection;
+    List<Visas> visasList = new ArrayList<>();
     private final Map<String, Visas> visasMap = new HashMap<>();
     private BufferedReader reader = null;
 
     public Commands() {
-*/
-  /*      try {
+
+        try {
             Class.forName(DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             System.err.println(DRIVER_NAME + " loading failure");
@@ -32,43 +35,46 @@ public class Commands {
         }
 
         reader = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
 
-
-        Connection connection;
-        List<Visas> visasList = new ArrayList<>();
 
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            Statement statement = connection.createStatement();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        public static void toAddVisa (); {
-            (sb.append("Enter country:\n")).append(reader).append("Enter visa fee:\n").
-                    append(reader).append("Enter the currency of visa fee:\n").
-                    append(reader).append("Enter the cost of visa:\n");
-            Statement query = new Statement() {
-
-                @Override
-                public ResultSet executeQuery(String sql) throws SQLException {
-                    Visas visa = new Visas(0, "vdoij", 142, "USD", 15);
-                    visasList.add(visa);
-                    System.out.println(visasList);
-                    return null;
-                }};}}}
-
-    /*private char askForInput(StringBuilder sb) throws IOException {
-
-        String s = reader.readLine();
-
-        if (s.length() != 1 && !s.matches("[ ]"))
-            throw new InvalidInputException();
-
-        return s.charAt(0);
-    }*/
+    }
 
 
+    public void toAddVisa() throws SQLException, IOException {
+
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into visas values (null, ?, ?, ?, ?)");
+        System.out.println("Enter country:\\n");
+        String country = reader.readLine();
+        System.out.println(country);
+
+        System.out.println("Enter visa fee:\\n");
+        int visa_fee = Integer.parseInt(reader.readLine());
+        System.out.println(visa_fee);
+
+        System.out.println("Enter the currency of visa fee:\\n");
+        String visa_fee_currency = reader.readLine();
+        System.out.println(visa_fee_currency);
+
+        System.out.println("Enter the cost of visa:\\n");
+        int cost = Integer.parseInt(reader.readLine());
+        System.out.println(cost);
+
+        preparedStatement.setString(1,country);
+preparedStatement.setInt(2, visa_fee);
+
+preparedStatement.execute();
+
+
+//
+        //
+
+        System.out.println();
+    }
+
+}

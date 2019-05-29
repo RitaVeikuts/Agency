@@ -1,6 +1,5 @@
 package by.belhard.j2.myProject;
 
-import org.jetbrains.annotations.Contract;
 
 public class Visas {
 
@@ -10,7 +9,7 @@ public class Visas {
     private String visa_fee_currency;
     private int cost;
 
-    @Contract(pure = true)
+
     public Visas(int i, String vdoij, int i1, String usd, int i2) {
         this.id = id;
         this.country = country;

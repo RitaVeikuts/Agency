@@ -1,7 +1,5 @@
 package by.belhard.j2.myProject;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.Date;
 
 public class Clients {
@@ -13,16 +11,15 @@ public class Clients {
     private int visa_id;
     private String status;
 
-
-    @Contract(pure = true)
-    public Clients (int id, String name, Date application_date, Date decision_date, int visa_id, String status) {
+    public Clients(int id, String name, Date application_date, Date decision_date, int visa_id, String status) {
 
         this.id = id;
         this.name = name;
         this.application_date = application_date;
         this.decision_date = decision_date;
-        this.visa_id =visa_id;
-        this.status=status; }
+        this.visa_id = visa_id;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
