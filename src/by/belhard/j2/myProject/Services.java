@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 
-public class Services /*extends Commands*/ {
+public class Services extends Commands {
 
     private final BufferedReader reader;
 
@@ -19,11 +19,8 @@ public class Services /*extends Commands*/ {
         sb.append("Select an action:\n")
                 .append("1 Add Visa\n")
                 .append("2 Delete Visa\n")
-                .append("3 Change Visa\n")
-                .append("4 Show All Visas\n")
-                .append("5 Show clients' base\n")
-                .append("6 Change status of visa application\n")
-                .append("7 Calculate the company's revenue\n")
+                .append("3 Show All Visas\n")
+                .append("4 Show clients' base\n")
                 .append("0 Close program");
         System.out.println(sb);
     }
@@ -48,39 +45,55 @@ public class Services /*extends Commands*/ {
             }
             switch (a) {
                 case '1':
-                    System.out.println("Enter the following parameters: \n 1. Country.\n 2. Visa fee.\n " +
-                            "3. Currency of visa fee.\n 4. The cost of visa services in the agency.\n");
                     try {
-                        commands.toAddVisas();
+                        Commands.toAddVisa();
                     } catch (SQLException sqle){
                         System.out.println("Try again.");
 
                     } catch (IOException ioe) {
                         System.out.println("Try again.");
-
+                    } catch (NullPointerException npe) {
+                        System.out.println("Something went wrong.");
                     }
                     break;
                 case '2':
-                    System.out.printf("If you want to delete the visa, please enter the country.\n");
+                    try {
+                        Commands.toDeleteVisa();
+                    } catch (SQLException sqle){
+                        System.out.println("Try again.");
+
+                    } catch (IOException ioe) {
+                        System.out.println("Try again.");
+                    } catch (NullPointerException npe) {
+                        System.out.println("Something went wrong.");
+                    }
                     break;
                 case '3':
-
-                case '4':
                     System.out.printf("Visa list:\n");
+                    try {
+                        Commands.toShowAllVisas();
+                    } catch (SQLException ioe) {
+                        System.out.println("Try again.");
+                    } catch (NullPointerException npe) {
+                        System.out.println("Something went wrong.");
+                    }
                     break;
-                case '5':
+                case '4':
                     System.out.printf("Clients'base:\n");
+                    try {
+                        Commands.toShowAllClients();
+                    } catch (SQLException ioe) {
+                        System.out.println("Try again.");
+                    } catch (NullPointerException npe) {
+                        System.out.println("Something went wrong.");
+                    }
                     break;
-                case '6':
-                    System.out.printf("Enter the following parameters: \n 1. Client.\n 2. Visa.\n " +
-                            "3. Decision date.\n 4. New status.\n");
-                    break;
-
-                case '7':
-                    System.out.println("Total revenue of the company is: ");
                 case '0':
                     return startWork();
 
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + a);
 
             }
         }
@@ -91,9 +104,10 @@ public class Services /*extends Commands*/ {
     private char askForInput() throws IOException, StringIndexOutOfBoundsException {
         String a = reader.readLine();
 
-        if (a.length() != 1 && !a.matches("[01234567]"))
+        if (a.length() != 1 && !a.matches("[01234]"))
         throw new InvalidInputException();
         else return a.charAt(0);
     }
+
 
 }
